@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s12">
+            <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+              <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="clientService.selectedClient._id">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="first_name" #name="ngModel" [(ngModel)]="clientService.selectedClient.first_name" placeholder="Enter full name" required>
+                  <label>First name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+                <div class="input-field col s12">
+                  <input type="text" name="last_name" #name="ngModel" [(ngModel)]="clientService.selectedClient.last_name" placeholder="Enter full name" required>
+                  <label>Last name :
+                    <label class="red-text">*</label>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="email" name="email" #name="ngModel" [(ngModel)]="clientService.selectedClient.email" placeholder="Eg : Snr. Developer">
+                  <label>Position :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="gender" #name="ngModel" [(ngModel)]="clientService.selectedClient.gender" placeholder="Enter office location">
+                  <label>Office :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="text" name="image" #name="ngModel" [(ngModel)]="clientService.selectedClient.image" placeholder="Salary per annum">
+                  <label>Salary :</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn btn-custom right" type="button" (click)="resetForm(clientForm)">Reset</button>
+                  <button class="btn btn-custom right" type="submit" [disabled]="!clientForm.valid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col s12">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Image</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tr *ngFor="let clnt of clientService.clients">
+                    <td>{{clnt.first_name}} {{clnt.last_name}}</td>
+                    <td>{{clnt.email}}</td>
+                    <td>{{clnt.gender}}</td>
+                    <td>{{clnt.image}}</td>
+                    <td>
+                        <!-- <a class="action-btn" (click)="onEdit(clnt)">
+                          <i class="material-icons">edit</i>
+                        </a> -->
+                        <a class="btn-floating btn-small waves-effect waves-light blue" (click)="onEdit(clnt)"><i class="material-icons">edit</i></a>
+                        <a class="btn-floating btn-small waves-effect waves-light red" (click)="onDelete(clnt._id,clientForm)"><i class="material-icons">delete</i></a>
+                        <!-- <a class="action-btn" (click)="onDelete(clnt._id,clientForm)">
+                          <i class="material-icons">delete</i>
+                        </a> -->
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
